@@ -1,0 +1,23 @@
+{
+  "name": "tech_task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/code": "^8.0.2",
+    "@hapi/glue": "^8.0.0",
+    "@hapi/hapi": "^20.1.0",
+    "@hapi/jwt": "^2.0.1",
+    "@hapi/lab": "^24.1.1",
+    "axios": "^0.21.1",
+    "hapi-server-session": "^5.1.2",
+    "md5": "^2.3.0",
+    "uuid": "^8.3.2",
+    "validator": "^13.5.2"
+  }
+}
