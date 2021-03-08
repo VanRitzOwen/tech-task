@@ -46,6 +46,9 @@ const init = async () => {
     server.route({
         method: 'GET',
         path: '/',
+        options: {
+            auth: false
+        },
         handler: (req, h) => {
             return 'Tech Task';
         }
