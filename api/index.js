@@ -20,24 +20,36 @@ exports.register = (server, options, next) => {
         },
         handler: (req, h) => {
             let pl = req.payload;
-
+            let user_check = true;
             let userData = {};
             if(goValid.isRegValid(JSON.stringify(pl))){
-                for (var key in pl){
-                    if(key == "password"){
-                        userData[key] = md5(pl[key]);
-                    }else{
-                        userData[key] = pl[key];
+                temp_storage.forEach(item => {
+                    if(item.email == pl.email){
+                        user_check = false;
                     }
+                })
+                if(user_check){
+                    for (var key in pl){
+                        if(key == "password"){
+                            userData[key] = md5(pl[key]);
+                        }else{
+                            userData[key] = pl[key];
+                        }
+                    }
+                    userData["id"] = uuidv4();
+                    let createTime = new Date().toISOString();
+                    userData["createdAt"] = createTime;
+                    temp_storage.push(userData);
+                    return h.response({
+                        statusCode: 201,
+                        message: "Registration Success"
+                    }).code(201);
+                }else{
+                    return h.response({
+                        statusCode: 400,
+                        message: "User Already Exists"
+                    }).code(400);
                 }
-                userData["id"] = uuidv4();
-                let createTime = new Date().toISOString();
-                userData["createdAt"] = createTime;
-                temp_storage.push(userData);
-                return h.response({
-                    statusCode: 201,
-                    message: "Registration Success"
-                }).code(201);
             }else{
                 return h.response({
                     statusCode: 400,
