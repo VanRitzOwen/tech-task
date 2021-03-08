@@ -59,7 +59,7 @@ const init = async () => {
             register: apiRouter.register
         }, {
             routes: {
-                prefix: '/api/v1'
+                prefix: '/v1'
             }
         });
 
